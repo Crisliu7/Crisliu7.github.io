@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>Oliver's Page</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+<style>
+	body{
+
+        font-family:'MontserratAlternates-Regular', "Helvetica Neue", Helvetica, Arial,sans-serif;
+	}
+	.banner
+	{
+		width:100%;
+		height:14%;
+		position:absolute;
+		top:0%;
+		padding:4px 10px 10px 10px;
+        font-size:250%;
+		background:#c90188;
+		color:#ffffff;
+
+		animation:myfirst 5s infinite;
+		animation-direction:alternate;
+
+		-webkit-animation:myfirst 5s infinite;
+		-webkit-animation-direction:alternate;
+	}
+
+	@keyframes myfirst
+	{
+		from {background:#50c1cc;}
+		to {background:#c90188;}
+	}
+
+	@-webkit-keyframes myfirst /* Safari and Chrome */
+	{
+		from {background:#50c1cc;}
+		to {background:#c90188;}
+	}
+	.navbar{
+		top:60px;
+		font-family:'Microsoft YaHei';
+		font-size:17px;
+	}
+    .backphoto{
+        background:url(./picture/background.jpg)no-repeat center;
+        min-height: 600px;
+        background-size: cover;
+        color:white;
+        font-size:70px;
+        font-family:'MontserratAlternates-Regular', "Helvetica Neue", Helvetica, Arial,sans-serif;
+    }
+    .motto{
+        padding: 3em;
+        text-align: center;
+    }
+    .strip{
+        background:url(./picture/strip.png)no-repeat center;
+        min-height: 5px;
+        background-size: cover;
+    }
+    .footer {
+        background:#f8565d;
+
+        min-height:8em;
+
+        color: #fff;
+        font-family: 'MontserratAlternates-Regular';
+    }
+    .footerword{
+        padding:1em 3em 2em 4em;
+
+    }
+    .footerword>p{
+        font-size:15px;
+    }
+    .email{
+        font-size:20px;
+    }
+
+    @font-face {
+        font-family: 'MontserratAlternates-Regular';
+        src:url(./fonts/MontserratAlternates-Regular.ttf) format('truetype');
+    }
+</style>
+<body>
+
+
+<audio loop autoplay>
+  <source src="./music/bgm.mp3" type="audio/mpeg">
+</audio>
+
+<div class="banner">
+	<p>Welcome to Oliver's Page</p>
+</div>
+
+<nav class="navbar navbar-default" role="navigation" >
+	<div class="container-fluid">
+	<div>
+		<ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li> 
+            <li><a href="Introduction.html">Introduction</a></li>
+            <li><a href="Timetable.html">Timetable</a></li>
+			<li><a href="Registration.html">Registration</a></li>
+            <li><a href="#address">Address</a></li>  
+		</ul>
+	</div>
+	</div>
+</nav>
+
+
+<div class="backphoto">
+    <div class="motto">
+        <p>Hello,adventurer!</p>
+    </div>
+</div>
+
+<div class="strip">
+
+</div>
+
+<div class="footer">
+
+    <div class="footerword" id="address">
+        <h2>Oliver Liu</h2>
+        <p>+86 17710120350</p>
+        <p>School of Information and Communication Engineering,
+        <br>Beijing University of Posts and Telecommunications,
+        <br>No.10 Xitucheng Road, Haidian District,
+        <br>Beijing, Mainland of China, 100876</p>
+        <br>
+        <div class="email">
+        <p>Send email to zhiyang.liu@qq.com
+            <a href="mailto:zhiyang.liu@qq.com">
+                Send</a>
+        </p>
+        </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gbk"> 
+<title>Registration</title> 
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+
+<style>
+
+body{
+	background-color:#f9f7f6;
+    font-family:"Microsoft YaHei";
+    color:#6a7989;
+}
+
+.container {
+	margin: 0 auto;
+	text-align: center;
+	overflow: hidden;
+}
+
+.content {
+	font-size: 150%;
+	padding: 1em 0;
+
+}
+
+.titlabel{
+
+    font-size:18px;
+    color:hsl(20, 100%, 50%);
+}
+
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	max-width: 400px;
+	width: calc(100% - 2em);
+	vertical-align: top;
+}
+
+.input__field {
+	position: relative;
+	display: block;
+
+	padding: 0em;
+	width: 60%;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #aaa;
+	font-weight: bold;
+    font-family:"MontserratAlternates-Regular", "Helvetica Neue", Helvetica, Arial,"Microsoft YaHei",sans-serif;
+    font-size:100%;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+	outline: none;
+}
+
+.input__label {
+	display: inline-block;
+	float: right;
+	padding: 0 1em;
+	width: 40%;
+	/*color: #6a7989;*/
+    color:transparent;
+	font-weight: bold;
+	font-size: 80%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    font-family:"MontserratAlternates-Regular", "Helvetica Neue", Helvetica, Arial,"Microsoft YaHei",sans-serif;
+}
+
+.input__label-content {
+	position: relative;
+	display: block;
+	padding: 1.6em 0;
+	width: 100%;
+}
+
+
+
+
+.input--hoshi {
+	overflow: hidden;
+}
+
+.input__field--hoshi {
+	margin-top: 1em;
+	padding: 0.85em 0.15em;
+	width: 100%;
+	background: transparent;
+	color: #595F6E;
+}
+
+.input__label--hoshi {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 0.25em;
+	width: 100%;
+	height: calc(100% - 1em);
+	text-align: left;
+	pointer-events: none;
+}
+
+.input__label-content--hoshi {
+	position: absolute;
+}
+
+.input__label--hoshi::before,
+.input__label--hoshi::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 10px);
+	border-bottom: 1px solid #B9C1CA;
+}
+
+.input__label--hoshi::after {
+	margin-top: 0px;
+	border-bottom: 4px solid red;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label--hoshi-color-1::after {
+	border-color: hsl(200, 100%, 50%);
+}
+
+.input__label--hoshi-color-2::after {
+	border-color: hsl(160, 100%, 50%);
+}
+
+.input__label--hoshi-color-3::after {
+	border-color: hsl(20, 100%, 50%);
+}
+
+.input__label--hoshi-color-4::after {
+	border-color: #ffe957;
+}
+
+.input__label--hoshi-color-5::after {
+	border-color: #726dd1;
+}
+
+.input__field--hoshi:focus + .input__label--hoshi::after,
+.input--filled .input__label--hoshi::after {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+.input--filled .input__label-content--hoshi {
+	-webkit-animation: anim-1 0.3s forwards;
+	animation: anim-1 0.3s forwards;
+}
+
+@-webkit-keyframes anim-1 {
+    from {color:transparent;}
+	to {color:#6a7989;}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(1em, 0, 0);
+		transform: translate3d(1em, 0, 0);
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(-1em, -40%, 0);
+		transform: translate3d(-1em, -40%, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, -40%, 0);
+		transform: translate3d(0, -40%, 0);
+	}
+}
+
+@keyframes anim-1 {
+    from {color:transparent;}
+	to {color:#6a7989;}
+	50% {
+		opacity: 0;
+		-webkit-transform: translate3d(1em, 0, 0);
+		transform: translate3d(1em, 0, 0);
+	}
+	51% {
+		opacity: 0;
+		-webkit-transform: translate3d(-1em, -40%, 0);
+		transform: translate3d(-1em, -40%, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, -40%, 0);
+		transform: translate3d(0, -40%, 0);
+	}
+}
+
+.button {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  font-family:'MontserratAlternates-Regular', "Helvetica Neue", Helvetica, Arial,sans-serif;
+  padding: 15px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+@font-face {
+   font-family: 'MontserratAlternates-Regular';
+   src:url(./fonts/MontserratAlternates-Regular.ttf) format('truetype');
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <section class="content">
+				<h1 id="title"><strong>用户注册</strong></h1>
+                <label for="title">
+                    <spam class="titlabel">注：下标红线为必填项</spam>
+                </label>
+                <form>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="name" placeholder="姓名" required/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="name">
+						<span class="input__label-content input__label-content--hoshi">Name</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" placeholder="性别" id="gender"/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-5" for="gender">
+						<span class="input__label-content input__label-content--hoshi">Gender</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" placeholder="地址" id="address" />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="address">
+						<span class="input__label-content input__label-content--hoshi">Address</span>
+					</label>
+				</span>
+                <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="postcode" placeholder="邮编" pattern="[0-9]{6}" />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-2" for="postcode">
+						<span class="input__label-content input__label-content--hoshi">Postcode<small> (6 numbers)</small></span>
+					</label>
+				</span>
+                <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="email" id="email" placeholder="邮箱" required />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="email">
+						<span class="input__label-content input__label-content--hoshi">E-mail</span>
+					</label>
+				</span>
+                <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text"  id="mobile" placeholder="手机" pattern="[0-9]{11}" required/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="mobile">
+						<span class="input__label-content input__label-content--hoshi">Mobile<small> (11 numbers)</small></span>
+					</label>
+				</span>
+                <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="password" id="pwd1" placeholder="密码" onchange="checkPasswords()" minlength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="pwd1">
+						<span class="input__label-content input__label-content--hoshi">Password<small> (including lowercase,UPPERCASE and numbers, minimum length is 6)</small></span>
+					</label>
+				</span>
+                <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="password" id="pwd2" placeholder="再次输入密码" onchange="checkPasswords()" minlength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="pwd2">
+						<span class="input__label-content input__label-content--hoshi">Re-enter Password</span>
+					</label>
+				</span>
+                <div>
+                <button class="button" style="vertical-align:middle" onclick="document.passwordChange.password1.checkValidity()"><span>Submit</span></button>
+                </div>
+                </form>
+
+                 <script>
+                    function checkPasswords() {
+                    var pass1 = document.getElementById("pwd1");
+                    var pass2 = document.getElementById("pwd2");
+            
+                    if (pass1.value != pass2.value)
+                        pass1.setCustomValidity("两次输入的密码不匹配");
+                    else
+                        pass1.setCustomValidity("");
+                }
+                </script>          	                			
+	</section>
+</div>
+</body>
+</html>
