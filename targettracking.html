@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="">
+	
+	<title>Motion Detection</title>
+
+	<link rel="shortcut icon" href="assets/images/head.png">
+	
+	<!-- Bootstrap -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Icons -->
+	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<!-- Fonts -->
+	<link href="assets/css/fonts.css" rel="stylesheet">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="assets/css/styles.css">
+
+	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
+</head>
+<body>
+
+<header id="header">
+	<div id="head" class="parallax" parallax-speed="1">
+		<h1 id="logo" class="text-center">
+			<span class="title">Zhiyang Liu</span>
+			<span class="tagline">A creative person<br>
+				<!-- <a href="">crisliu817@gmail.com</a> -->
+			</span>
+		</h1>
+	</div>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+			</div>
+			
+			<div class="navbar-collapse collapse">
+				
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="experience.html">Experience</a></li>
+                    <li class="active"><a href="project.html">Project</a></li>
+					<li><a href="volunteer.html">Volunteer</a></li>
+				</ul>
+			
+			</div><!--/.nav-collapse -->			
+		</div>	
+	</nav>
+</header>
+
+<main id="main">
+
+	<div class="container">
+
+		<div class="row topspace">
+			
+			<!-- Article main content -->
+			<article class="col-sm-7 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Target Tracking</h1>
+				</header>
+				<p></p>
+
+				<h5>Abstract</h5>
+				<p>The Circulant Matrix (CM) tracker is very efficient finding a translated copy of the target template. <br>However, the code provided by the authors of the CM tracker does not check for occlusion.
+				In this project we improve the tracker by implementing the occlusion detection. When occlusion is detected, the improved tracker will use the previous measurements of the target to predict where the target is now.  In this way, rather than giving up, the tracker can attempt to find the target at this predicted location. 
+				</p>
+				<h5>Algorithm Design</h5>
+				<ul>
+					<li>The Circulant Matrix (CM) tracker is very efficient finding a translated copy of the target template (from the previous frame) by computing many convolutions in a single shot. This is accomplished by finding the peak response of a filter applied to a region of the current frame that is expected to include the target. This filter changes from frame to frame and it is computed based on the FFT of a larger region which contains the target in the current frame. (Efficiency is obtained by applying this filter in the frequency domain).
+					</li>
+					<li>Occlusion Detection: <br>we include a test that measures the response of the filter against the rest of the search window through the use of the Peak to Sidelobe Ratio (PSR). We split the response of the filter into the maximum value and the "sidelobe" consisting of the rest of the pixels in the region, excluding a small window (i.e. 11x11) around the peak. Then the PSR is defined as: <sup>gmax-μ</sup>&frasl;<sub>σ</sub>, where gmax is the value of the peak, and  and  are the mean value and the standard deviation of the sidelobe, respectively. A low PSR indicates a poor match and a possible occlusion.
+						</li>
+					<li>Recover from occlusion: <br>When occlusion is detected, the tracker could use the locations of the target in the past to predict where the target is now (even if it is behind some occluding object) and predict where it should be in the next frame. In this way, rather than giving up, the tracker can attempt to find the target in the next frame at this predicted location. The prediction of the location of the target based on previous measurements can be done by using the Hankel matrix of the target locations.
+					</li>
+				</ul>
+				<h5>Analysis</h5>
+				<p>The Hankel matrix can be used to predict future measurements without assuming dynamics. The rank of the Hankel matrix measures the complexity of the underlying dynamics and it will not increase after enough measurements. Therefore, by minimizing the rank with respect to the noise, the prediction can be obtained by a linear combination of the previous measurements. The result shows my improved CM tracker really does a good job.
+				</p>
+
+				<!-- <p><img src="assets/images/pj3/p1.jpg" alt=""></p> -->
+				
+
+
+
+				<h5>Reference</h5>
+				<a style="text-decoration:none" href="http://www.robots.ox.ac.uk/~joao/#publications"><p>J. F. Henriques, R. Caseiro, P. Martins, J. Batista: Exploiting the Circulant Structure of Tracking-by-detection with Kernels. In: ECCV, 2012</p></a>
+				
+
+
+
+				
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-sm-4 col-sm-offset-1 sidebar sidebar-left">
+
+				<div class="widget">
+					<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" width="320" height="240" src="assets/images/pj3/m1.mp4" allowfullscreen></iframe>
+					</div>
+					<p>The blue, yellow and green boxes respectively represent the MIL, CM and my improved CM tracker. <br>The green box turning red means my tracker has detected occlusion at the moment</p>
+				</div>
+				<div class="widget">
+						<p><img src="assets/images/pj3/p1.png" alt=""></p>
+						<p>The result shows my improved CM tracker really does a good job.
+						</p>
+						
+				</div>		
+			</aside>			
+			<!-- /Sidebar -->
+			
+		</div>
+	</div>	<!-- /container -->
+	
+</main>
+
+<footer id="footer" class="topspace">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Contact</h3>
+				<div class="widget-body">
+					<p>+1 (617)373-0968<br>
+						<a href="mailto:crisliu817@gmail.com">crisliu817@gmail.com</a><br>
+						<br>
+						105 PeterBorough St., Boston, MA 02215
+					</p>	
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Follow me</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="https://www.linkedin.com/in/zhiyang-liu-21a89195/"><i class="fa fa-linkedin fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-dribbble fa-2"></i></a> -->
+						<a href="https://github.com/Crisliu7"><i class="fa fa-github fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-facebook fa-2"></i></a> -->
+					</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Zhiyang Liu's Resume</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="/assets/file/Resume_ZhiyangLiu.pdf" download><i class="fa fa-user fa-1"></i></a>
+					</p>
+				</div>
+			</div>
+
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+<footer id="underfooter">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-6 widget">
+				<!-- <div class="widget-body">
+					<p>105 PeterBorough St., Boston, MA 02215 </p>
+				</div> -->
+			</div>
+
+			<div class="col-md-6 widget">
+				<div class="widget-body">
+					<p class="text-right">
+						Copyright &copy; 2018, Zhiyang Liu<br> 
+						<!-- Design: <a href="http://www.gettemplate.com" rel="designer">Initio by GetTemplate</a>  -->
+					</p>
+				</div>
+			</div>
+
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script
+  src="https://code.jquery.com/jquery-1.10.2.js"
+  integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+  crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/template.js"></script>
+
+</body>
+</html>
