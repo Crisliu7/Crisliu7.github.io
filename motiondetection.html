@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="">
+	
+	<title>Motion Detection</title>
+
+	<link rel="shortcut icon" href="assets/images/head.png">
+	
+	<!-- Bootstrap -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Icons -->
+	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<!-- Fonts -->
+	<link href="assets/css/fonts.css" rel="stylesheet">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="assets/css/styles.css">
+
+	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
+</head>
+<body>
+
+<header id="header">
+	<div id="head" class="parallax" parallax-speed="1">
+		<h1 id="logo" class="text-center">
+			<span class="title">Zhiyang Liu</span>
+			<span class="tagline">A creative person<br>
+				<!-- <a href="">crisliu817@gmail.com</a> -->
+			</span>
+		</h1>
+	</div>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+			</div>
+			
+			<div class="navbar-collapse collapse">
+				
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="experience.html">Experiences</a></li>
+                    <li class="active"><a href="project.html">Project</a></li>
+					<li><a href="volunteer.html">Volunteer</a></li>
+				</ul>
+			
+			</div><!--/.nav-collapse -->			
+		</div>	
+	</nav>
+</header>
+
+<main id="main">
+
+	<div class="container">
+
+		<div class="row topspace">
+			
+			<!-- Article main content -->
+			<article class="col-sm-7 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Motion Detection Using Simple Image Filtering</h1>
+				</header>
+				<!-- <h3>Simple Image Filtering</h3> -->
+				<p></p>
+				<h5>Abstract</h5>
+				<p>The project uses the simple filter to implement motion detection in image sequence on Matlab. We calculate the intensity value variation of the same point in image sequence and set a threshold. The value bigger than the threshold indicates it is a pixel where motion happens, and we binarize the image and mark as the motion.</p>
+				<h5>Algorithm Design</h5>
+				<ul>
+					<li>Image Preprocessing: <br>we apply 2-D Gaussian filter to reduce the spatial noise.</li>
+					<li>Intensity Value Variation Calculation: <br>we apply 1-D temporal Gaussian filter, then take the temporal derivatives of each pixel.</li>
+					<li>Self-adaptive threshold algorithm: <br>For each image, we have calculated a self-adaptive threshold. We model the background pixels which change little as Gaussian zero mean noise and use EST_NOISE_TruccoVerri Algorithm to estimate the standard deviation σ. Then we take the average value of each matrix plus n*σ and ceil the sum as the threshold.</li>
+				</ul>
+				<h5>Analysis</h5>
+				<p>A large intensity variation usually incidates a motion in this method. However, the luminance variation can also be marked as motion. The self-adaptive threshold algorithm can solve the problem perfectly.</p>
+				<p class = "col-sm-6"><img src="assets/images/pj1/p1.png" alt=""></p>
+				<p class = "col-sm-6"><img src="assets/images/pj1/p2.png" alt=""></p>
+				
+				<p><br></p>
+
+				<p>
+					There is a sudden luminance increase in the image sequence, the traditional static threshold(left view) will misjudge it as a motion.
+				</p>
+
+				<p class = "col-sm-6"><img src="assets/images/pj1/p3.png" alt=""></p>
+				<p class = "col-sm-6"><img src="assets/images/pj1/p4.png" alt=""></p>	
+
+				<p><br></p>
+
+				<p>
+					Likewise, the man in the graph turns on the light, which incurs a large global intensity value variation. It proves that the threshold algorithms work well.
+				</p>
+
+			<h5>Challenge</h5>
+			<p>When the objects move too too fast. We cannot detect the motion.<br>
+				If the luminance varies too too largely, we will still misjudge.
+			</p>
+
+
+
+				
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-sm-4 col-sm-offset-1 sidebar sidebar-left">
+
+				<div class="widget">
+					<p><img src="assets/images/pj1/p7.png" alt=""></p>
+					<p>Motion detected in moving person, compared with previous and next frame.</p>
+				</div>
+				<div class="widget">
+					<p><img src="assets/images/pj1/p8.png" alt=""></p>
+					<p>Motion detected in moving people, compared with previous and next frame.</p>
+				</div>				
+				<div class="widget">
+					<p><img src="assets/images/pj1/p9.png" alt=""></p>
+					<p>Succcessfully detect the motion of the man and the chair.</p>
+				</div>
+				<div class="widget">
+					<p><img src="assets/images/pj1/p10.png" alt=""></p>
+					<p>Motion detected in left half of the man's body(cuz the man is turning so right half of the body is still.</p>
+				</div>	
+				<div class="widget">
+					<p><img src="assets/images/pj1/p11.png" alt=""></p>
+					<p>Succcessfully detect the motion of the man and the chair.</p>
+				</div>				
+			</aside>			
+			<!-- /Sidebar -->
+			
+		</div>
+	</div>	<!-- /container -->
+	
+</main>
+
+<footer id="footer" class="topspace">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Contact</h3>
+				<div class="widget-body">
+					<p>+1 (617)373-0968<br>
+						<a href="mailto:crisliu817@gmail.com">crisliu817@gmail.com</a><br>
+						<br>
+						105 PeterBorough St., Boston, MA 02215
+					</p>	
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Follow me</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="https://www.linkedin.com/in/zhiyang-liu-21a89195/"><i class="fa fa-linkedin fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-dribbble fa-2"></i></a> -->
+						<a href="https://github.com/Crisliu7"><i class="fa fa-github fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-facebook fa-2"></i></a> -->
+					</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Zhiyang Liu's Resume</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="/assets/file/Resume_ZhiyangLiu.pdf" download><i class="fa fa-user fa-1"></i></a>
+					</p>
+				</div>
+			</div>
+
+
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+<footer id="underfooter">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-6 widget">
+				<!-- <div class="widget-body">
+					<p>105 PeterBorough St., Boston, MA 02215 </p>
+				</div> -->
+			</div>
+
+			<div class="col-md-6 widget">
+				<div class="widget-body">
+					<p class="text-right">
+						Copyright &copy; 2018, Zhiyang Liu<br> 
+						<!-- Design: <a href="http://www.gettemplate.com" rel="designer">Initio by GetTemplate</a>  -->
+					</p>
+				</div>
+			</div>
+
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script
+  src="https://code.jquery.com/jquery-1.10.2.js"
+  integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+  crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/template.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="">
+	
+	<title>Stereo</title>
+
+	<link rel="shortcut icon" href="assets/images/head.png">
+	
+	<!-- Bootstrap -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Icons -->
+	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<!-- Fonts -->
+	<link href="assets/css/fonts.css" rel="stylesheet">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="assets/css/styles.css">
+
+	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
+</head>
+<body>
+
+<header id="header">
+	<div id="head" class="parallax" parallax-speed="1">
+		<h1 id="logo" class="text-center">
+			<span class="title">Zhiyang Liu</span>
+			<span class="tagline">A creative person<br>
+				<!-- <a href="">crisliu817@gmail.com</a> -->
+			</span>
+		</h1>
+	</div>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+			</div>
+			
+			<div class="navbar-collapse collapse">
+				
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="experience.html">Experience</a></li>
+                    <li class="active"><a href="project.html">Project</a></li>
+					<li><a href="volunteer.html">Volunteer</a></li>
+				</ul>
+			
+			</div><!--/.nav-collapse -->			
+		</div>	
+	</nav>
+</header>
+
+<main id="main">
+
+	<div class="container">
+
+		<div class="row topspace">
+			
+			<!-- Article main content -->
+			<article class="col-sm-5 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Stereo</h1>
+				</header>
+				<!-- <h3>Simple Image Filtering</h3> -->
+				<p></p>
+				<h5>Abstract</h5>
+				<p>Our goal is to compute a dense disparity map of stereo pairs by using Fundamental matrix. The method can reduce the search space and search time because it reduces search on plane to search on line.
+                </p>
+				<h5>Algorithm Design</h5>
+				<ul>
+					<li>Find correspondences: <br>extract the Speed-Up Robust Features(SURF) and match them.
+                    </li>
+					<li>Estimate Fundamental Matrix: <br>use RANSAC to eliminate outliers, and estimate the Fundamental Matrix by using inlier correspondences.
+                    </li>
+					<li>Search epipolar line: <br>for each point in image2, I compute the corresponding epipolar line in image 1, and use NCC to find the most fitted point.
+                    </li>
+                    <li>Compute a dense disparity map: <br> compute the horizontal and vertical disparity respectively, and use following equations to scale the value: 255*(<sup>val-min</sup>&frasl;<sub>max-min</sub>)
+                    </li>
+				</ul>
+				<h5>Analysis</h5>
+				<p>
+					Since the two picture only moves in horizontal direction. The vertical disparity map is all black, which means no motion.
+				</p>
+				
+				
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-sm-6 col-sm-offset-1 sidebar sidebar-left">
+				<div class="widget">
+					<p><img src="assets/images/pj4/p2.png" alt=""></p>
+					<p>implement the Speeds-Up Robust Features(SURF) algorithm to find the features of the image pairs, and use RANSAC to eliminate the outliers. 
+					</p>
+				</div>
+				<div class="widget">
+					<p class="col-sm-6"><img src="assets/images/pj4/p4.png" alt=""></p>
+					<p class="col-sm-6"><img src="assets/images/pj4/p4.1.png" alt=""></p>
+					<p>Since the two cameras are in the line parallel to the image, the epipoles are at infinity. So the epipolar lines are horizontal.
+					</p>
+				</div>
+				<div class="widget">
+					<p><img src="assets/images/pj4/p6.png" alt=""></p>
+					<p>The Horizontal disparity map shows the homogenous region has a small disparity (black). The edges have a bigger disparity (almost white).
+					</p>
+				</div>				
+			</aside>			
+			<!-- /Sidebar -->
+			
+		</div>
+	</div>	<!-- /container -->
+	
+</main>
+
+<footer id="footer" class="topspace">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Contact</h3>
+				<div class="widget-body">
+					<p>+1 (617)373-0968<br>
+						<a href="mailto:crisliu817@gmail.com">crisliu817@gmail.com</a><br>
+						<br>
+						105 PeterBorough St., Boston, MA 02215
+					</p>	
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Follow me</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="https://www.linkedin.com/in/zhiyang-liu-21a89195/"><i class="fa fa-linkedin fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-dribbble fa-2"></i></a> -->
+						<a href="https://github.com/Crisliu7"><i class="fa fa-github fa-2"></i></a>
+						<!-- <a href=""><i class="fa fa-facebook fa-2"></i></a> -->
+					</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 widget">
+				<h3 class="widget-title">Zhiyang Liu's Resume</h3>
+				<div class="widget-body">
+					<p class="follow-me-icons">
+						<a href="/assets/file/Resume_ZhiyangLiu.pdf" download><i class="fa fa-user fa-1"></i></a>
+					</p>
+				</div>
+			</div>
+			
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+<footer id="underfooter">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-6 widget">
+				<!-- <div class="widget-body">
+					<p>105 PeterBorough St., Boston, MA 02215 </p>
+				</div> -->
+			</div>
+
+			<div class="col-md-6 widget">
+				<div class="widget-body">
+					<p class="text-right">
+						Copyright &copy; 2018, Zhiyang Liu<br> 
+						<!-- Design: <a href="http://www.gettemplate.com" rel="designer">Initio by GetTemplate</a>  -->
+					</p>
+				</div>
+			</div>
+
+		</div> <!-- /row of widgets -->
+	</div>
+</footer>
+
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script
+  src="https://code.jquery.com/jquery-1.10.2.js"
+  integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+  crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/template.js"></script>
+
+</body>
+</html>
